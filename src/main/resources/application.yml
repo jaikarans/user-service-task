@@ -3,3 +3,15 @@ spring:
     name:
       user-service
 
+  datasource:
+    url: jdbc:postgresql://localhost:5432/user_db
+    username: userdbadmin
+    password: userdbadmin
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+jwt:
+  secret: ytrewqwertyuiopoiuytrewertyuiopoiuytrertyui
+  expiration: 99999999999
