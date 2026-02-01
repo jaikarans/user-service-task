@@ -18,6 +18,12 @@ public class SecurityConfig {
                         .requestMatchers("/auth/register", "/auth/login").permitAll()
                         .anyRequest().authenticated()
                 )
+                .exceptionHandling(ex ->
+                        ex.authenticationEntryPoint(
+                                (req, res, e) ->
+                                        res.sendError(401, "Unauthorized")
+                        )
+                )
                 .build();
     }
 
