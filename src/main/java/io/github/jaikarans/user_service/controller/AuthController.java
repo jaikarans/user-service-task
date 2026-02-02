@@ -20,7 +20,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<RegisterResponse> register(@RequestBody RegisterRequest request) {
         var user = authService.register(request);
-        var token = jwtService.generateToken(user.getEmail());
+        var token = jwtService.generateToken(user.getEmail(), user.getId());
 
         var response =  new RegisterResponse(
                 user.getId(),
@@ -32,12 +32,12 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
         var user = authService.login(request);
-        var token = jwtService.generateToken(user.getEmail());
+        var token = jwtService.generateToken(user.getEmail(), user.getId());
 
-        var response = new LoginResponse(token);
+        var response = new LoginResponse(user.getId(), token);
 
         return ResponseEntity.ok(response);
     }
