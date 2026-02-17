@@ -24,8 +24,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Maven dependency sumbmission
-      uses: advanced-security/maven-dependency-submission-action@v3
+#    - name: Maven dependency sumbmission
+#      uses: advanced-security/maven-dependency-submission-action@v3
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
