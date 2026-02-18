@@ -27,4 +27,9 @@ public class OrderController {
 
         return ResponseEntity.ok(order);
     }
+
+    @GetMapping("/hi")
+    public ResponseEntity<?> hi() {
+        return ResponseEntity.ok("hi from user service");
+    }
 }
