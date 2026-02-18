@@ -47,5 +47,5 @@ jobs:
         password: ${{secrets.DOCKER_PASSWORD}}
         tags: |
           latest
-          user-service-${{ github.sha }}
+          main-${{ github.sha }}
 
