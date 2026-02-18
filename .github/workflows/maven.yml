@@ -45,7 +45,5 @@ jobs:
         registry: docker.io
         username: ${{secrets.DOCKER_USERNAME}}
         password: ${{secrets.DOCKER_PASSWORD}}
-        tags: |
-          latest
-          main-${{ github.sha }}
+        tags: latest,main-${{ github.sha }}
 
