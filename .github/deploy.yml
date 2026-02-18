@@ -1,0 +1,33 @@
+name: Deploy to EC2
+
+on:
+  workflow_run:
+    workflows: ["Java CI with Maven"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy on EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+            docker pull ${{ secrets.IMAGE_NAME }}
+
+            docker stop app || true
+            docker rm app || true
+
+            docker run -d \
+              --name app \
+              --restart always \
+              -p 80:8080 \
+              ${{ secrets.IMAGE_NAME }}
+
