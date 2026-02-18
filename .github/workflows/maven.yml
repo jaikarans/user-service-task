@@ -45,3 +45,7 @@ jobs:
         registry: docker.io
         username: ${{secrets.DOCKER_USERNAME}}
         password: ${{secrets.DOCKER_PASSWORD}}
+        tags: ${{ gihub.sha }}
+        buildArgs: |
+          JAR_FILE=target/user-service-0.0.1-SNAPSHOT.jar
+
