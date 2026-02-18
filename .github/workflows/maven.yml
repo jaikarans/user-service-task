@@ -47,5 +47,6 @@ jobs:
         password: ${{secrets.DOCKER_PASSWORD}}
         tags: ${{ github.sha }}
         buildArgs: |
-          JAR_FILE=target/user-service-0.0.1-SNAPSHOT.jar
+          latest
+          user-service-${{ github.sha }}
 
